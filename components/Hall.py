@@ -17,7 +17,5 @@ class Hall:
 
         index = 1
         for data in fake_data:
-            ListItem(master, data["name"], data["amount"] , index)
+            ListItem(master, data["name"], data["amount"], index, "hall")
             index += 1
-
-

@@ -17,5 +17,5 @@ class Concert:
 
         index = 1
         for data in fake_data:
-            ListItem(master, data["concert_hall"], data["concert_singer"], index)
+            ListItem(master, data["concert_hall"], data["concert_singer"], index, "concert")
             index += 1

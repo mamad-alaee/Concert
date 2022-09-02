@@ -17,5 +17,5 @@ class Singer:
 
         index = 1
         for data in fake_data:
-            ListItem(master, data["name"], data["style"], index)
+            ListItem(master, data["name"], data["style"], index, "singer")
             index += 1
