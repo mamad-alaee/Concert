@@ -8,7 +8,7 @@ class Concert:
     def __init__(self, master):
         self.lable = ttk.Label(master, text="کنسرت ها")
         self.lable.grid(row=0, column=0, columnspan=2)
-        ttk.Button(master, text="ایجاد").grid(row=0, column=4, columnspan=2)
+        # ttk.Button(master, text="ایجاد").grid(row=0, column=4, columnspan=2)
 
         fake_data = [{"concert_hall": "تهران", "concert_singer": "علیرضا آذر"}, {"concert_hall": "تهران",
                                                                                  "concert_singer": "تتلو"},

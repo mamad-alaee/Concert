@@ -10,7 +10,7 @@ class ListItem:
         self.lable = ttk.Label(master, text=sub_text)
         self.lable.grid(row=index, column=2, columnspan=2)
 
-        ttk.Button(master, text="حذف").grid(row=index, column=4)
+        ttk.Button(master, text="بیشتر").grid(row=index, column=4)
 
 
 
