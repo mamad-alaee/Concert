@@ -1,8 +1,8 @@
 from tkinter import *
 from tkinter import ttk
-from Singer import Singer
-from Hall import Hall
-from Concert import Concert
+from components.Singer import Singer
+from components.Hall import Hall
+from components.Concert import Concert
 
 
 class Main:
@@ -15,8 +15,8 @@ class Main:
 
         ttk.Button(self.menu_frame, text="سالن", command=self.set_frame_to_hall).grid(row=0, column=0, columnspan=2)
         ttk.Button(self.menu_frame, text="کنسرت", command=self.set_frame_to_concert).grid(row=0, column=2, columnspan=2)
-        ttk.Button(self.menu_frame, text="خواننده", command=self.set_frame_to_singer).grid(row=0, column=4,
-                                                                                           columnspan=2)
+        ttk.Button(self.menu_frame, text="آرتیست", command=self.set_frame_to_singer).grid(row=0, column=4,
+                                                                                          columnspan=2)
 
         self.main_frame = ttk.Labelframe(self.root, text="main_component")
         self.main_frame.grid(row=2, column=0)
@@ -26,12 +26,18 @@ class Main:
         self.root.mainloop()
 
     def set_frame_to_concert(self):
+        for widgets in self.main_frame.winfo_children():
+            widgets.destroy()
         self.main_component = Concert(self.main_frame)
 
     def set_frame_to_hall(self):
+        for widgets in self.main_frame.winfo_children():
+            widgets.destroy()
         self.main_component = Hall(self.main_frame)
 
     def set_frame_to_singer(self):
+        for widgets in self.main_frame.winfo_children():
+            widgets.destroy()
         self.main_component = Singer(self.main_frame)
 
 
