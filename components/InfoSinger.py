@@ -3,7 +3,6 @@ from tkinter import ttk
 from tkinter import IntVar
 
 
-
 class InfoSinger:
     def __init__(self, master):
         self.lable = ttk.Label(master, text="ایجاد خواننده")
@@ -33,5 +32,3 @@ class InfoSinger:
         self.checkbox_gender_women.grid(row=4, column=2)
 
         ttk.Button(master, text="حذف").grid(row=5, column=0, columnspan=2)
-
-

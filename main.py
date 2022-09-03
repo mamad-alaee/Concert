@@ -6,12 +6,14 @@ from components.Concert import Concert
 from components.CreateConcert import CreateConcert
 from components.CreateSinger import CreateSinger
 from components.CreateHall import CreateHall
+from db.Sqlite import create_tables
 
 
 class Main:
     main_component = None
 
     def __int__(self):
+        create_tables()
         self.root = Tk()
         self.root.configure(width=1000, height=600)
         self.root.configure(bg="lightblue")
