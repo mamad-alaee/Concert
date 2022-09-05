@@ -121,9 +121,10 @@ def delete_hall(where_filter):
     try:
         conn = sqlite3.connect(dbname)
         cobj = conn.cursor()
-        cobj.execute("DELETE FROM Hall" + where_filter)
-        result = cobj.fetchall()
-        return result
+        print("DELETE FROM Hall " + where_filter)
+        cobj.execute("DELETE FROM Hall " + where_filter)
+        conn.commit()
+        return "done"
     except Error as e:
         print(e)
     finally:
@@ -136,9 +137,9 @@ def delete_concert(where_filter):
     try:
         conn = sqlite3.connect(dbname)
         cobj = conn.cursor()
-        cobj.execute("DELETE FROM Concert" + where_filter)
-        result = cobj.fetchall()
-        return result
+        cobj.execute("DELETE FROM Concert " + where_filter)
+        conn.commit()
+        return "done"
     except Error as e:
         print(e)
     finally:
@@ -151,9 +152,9 @@ def delete_singer(where_filter):
     try:
         conn = sqlite3.connect(dbname)
         cobj = conn.cursor()
-        cobj.execute("DELETE FROM Singer" + where_filter)
-        result = cobj.fetchall()
-        return result
+        cobj.execute("DELETE FROM Singer " + where_filter)
+        conn.commit()
+        return "done"
     except Error as e:
         print(e)
     finally:

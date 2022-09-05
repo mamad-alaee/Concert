@@ -2,9 +2,12 @@ from tkinter import *
 from tkinter import ttk
 from tkinter import IntVar
 
+from db.Sqlite import delete_singer
 
 class InfoSinger:
     def __init__(self, master, data):
+        self.id = data[0]
+
         lable = ttk.Label(master, text="ایجاد خواننده")
         lable.grid(row=0, column=1)
 
@@ -41,4 +44,9 @@ class InfoSinger:
             input_gender.insert(INSERT, "نا معتبر")
         input_gender['state'] = 'disabled'
 
-        ttk.Button(master, text="حذف").grid(row=5, column=0, columnspan=2)
+        ttk.Button(master, text="حذف", command=self.removing_item).grid(row=5, column=0, columnspan=2)
+
+    def removing_item(self):
+        where_filter = f"WHERE id={self.id}"
+        result = delete_singer(where_filter)
+        print(result)

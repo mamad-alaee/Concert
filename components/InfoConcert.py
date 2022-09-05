@@ -2,13 +2,14 @@ from tkinter import *
 from tkinter import ttk
 from tkinter import StringVar
 
+from db.Sqlite import delete_concert
 
 class InfoConcert:
     def __init__(self, master, data):
+        self.id = data[0]
+
         lable = ttk.Label(master, text="ایجاد کنسرت")
         lable.grid(row=0, column=1)
-
-        print(data)
 
         lable_singer_name = ttk.Label(master, text="خواننده")
         lable_singer_name.grid(row=1, column=0)
@@ -53,4 +54,9 @@ class InfoConcert:
         input_end_time['state'] = 'disabled'
 
         ttk.Button(master, text="خرید بلیط").grid(row=8, column=0, columnspan=2)
-        ttk.Button(master, text="حذف").grid(row=7, column=0, columnspan=2)
+        ttk.Button(master, text="حذف", command=self.removing_item).grid(row=7, column=0, columnspan=2)
+
+    def removing_item(self):
+        where_filter = f"WHERE id={self.id}"
+        result = delete_concert(where_filter)
+        print(result)

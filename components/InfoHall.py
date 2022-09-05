@@ -1,10 +1,11 @@
 from tkinter import *
 from tkinter import ttk
+from db.Sqlite import delete_hall
 
 
 class InfoHall:
     def __init__(self, master, data):
-        print(data)
+        self.id = data[0]
         lable = ttk.Label(master, text="ایجاد سالن")
         lable.grid(row=0, column=1)
 
@@ -29,4 +30,9 @@ class InfoHall:
         input_address.insert(INSERT, data[3])
         input_address['state'] = 'disabled'
 
-        ttk.Button(master, text="حذف").grid(row=5, column=0, columnspan=2)
+        ttk.Button(master, text="حذف", command=self.removing_item).grid(row=5, column=0, columnspan=2)
+
+    def removing_item(self):
+        where_filter = f"WHERE id={self.id}"
+        result = delete_hall(where_filter)
+        print(result)
