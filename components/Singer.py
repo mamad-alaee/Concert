@@ -13,5 +13,5 @@ class Singer:
 
         index = 1
         for data in singers:
-            ListItem(master, data[1], data[2], index, "singer")
+            ListItem(master, data[1], data[2], index, "singer",data)
             index += 1

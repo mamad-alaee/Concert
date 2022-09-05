@@ -14,5 +14,5 @@ class Hall:
 
         index = 1
         for data in halls:
-            ListItem(master, data[1], data[2], index, "hall")
+            ListItem(master, data[1], data[2], index, "hall", data)
             index += 1

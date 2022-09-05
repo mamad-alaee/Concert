@@ -15,5 +15,5 @@ class Concert:
 
         index = 1
         for data in concerts:
-            ListItem(master, data[8], data[13], index, "concert")
+            ListItem(master, data[8], data[13], index, "concert", data)
             index += 1
