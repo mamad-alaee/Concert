@@ -7,8 +7,8 @@ from db.Sqlite import read_hall
 
 class Hall:
     def __init__(self, master):
-        self.lable = ttk.Label(master, text="سالن های نمایش")
-        self.lable.grid(row=0, column=0, columnspan=2)
+        lable = ttk.Label(master, text="سالن های نمایش")
+        lable.grid(row=0, column=0, columnspan=2)
 
         halls = read_hall("")
 

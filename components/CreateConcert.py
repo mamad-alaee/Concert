@@ -47,53 +47,53 @@ def getting_id_of_selected_item(singer_name, hall_name, ids):
 class CreateConcert:
     def __init__(self, master):
         self.master = master
-        self.lable = ttk.Label(master, text="ایجاد کنسرت")
-        self.lable.grid(row=0, column=1)
+        lable = ttk.Label(master, text="ایجاد کنسرت")
+        lable.grid(row=0, column=1)
         self.ids = get_ids_for_combobox()
         names = getting_names_for_combo(self.ids)
         print(names[0])
         print(names[1])
 
-        self.lable_singer_name = ttk.Label(master, text="انتخاب خواننده")
-        self.lable_singer_name.grid(row=1, column=0)
+        lable_singer_name = ttk.Label(master, text="انتخاب خواننده")
+        lable_singer_name.grid(row=1, column=0)
         self.selected_singer = StringVar()
-        self.combo_singer = ttk.Combobox(master, textvariable=self.selected_singer)
-        self.combo_singer['values'] = names[0]
-        self.combo_singer['state'] = 'readonly'
-        self.combo_singer.grid(row=1, column=1)
+        combo_singer = ttk.Combobox(master, textvariable=self.selected_singer)
+        combo_singer['values'] = names[0]
+        combo_singer['state'] = 'readonly'
+        combo_singer.grid(row=1, column=1)
 
-        self.lable_hall_name = ttk.Label(master, text="انتخاب سالن")
-        self.lable_hall_name.grid(row=2, column=0)
+        lable_hall_name = ttk.Label(master, text="انتخاب سالن")
+        lable_hall_name.grid(row=2, column=0)
         self.selected_hall = StringVar()
-        self.combo_hall = ttk.Combobox(master, textvariable=self.selected_hall)
-        self.combo_hall['values'] = names[1]
-        self.combo_hall['state'] = 'readonly'
-        self.combo_hall.grid(row=2, column=1)
+        combo_hall = ttk.Combobox(master, textvariable=self.selected_hall)
+        combo_hall['values'] = names[1]
+        combo_hall['state'] = 'readonly'
+        combo_hall.grid(row=2, column=1)
 
         self.lable_price = ttk.Label(master, text="قیمت")
         self.lable_price.grid(row=3, column=0)
         self.input_price = Text(master, width=30, height=2)
         self.input_price.grid(row=3, column=1)
 
-        self.lable_date = ttk.Label(master, text="تاریخ")
-        self.lable_date.grid(row=4, column=0)
+        lable_date = ttk.Label(master, text="تاریخ")
+        lable_date.grid(row=4, column=0)
         self.input_date = Text(master, width=30, height=2)
         self.input_date.grid(row=4, column=1)
 
-        self.lable_start_time = ttk.Label(master, text="ساعت شروع")
-        self.lable_start_time.grid(row=5, column=0)
+        lable_start_time = ttk.Label(master, text="ساعت شروع")
+        lable_start_time.grid(row=5, column=0)
         self.input_start_time = Text(master, width=30, height=2)
         self.input_start_time.grid(row=5, column=1)
 
-        self.lable_end_time = ttk.Label(master, text="ساعت پایان")
-        self.lable_end_time.grid(row=6, column=0)
+        lable_end_time = ttk.Label(master, text="ساعت پایان")
+        lable_end_time.grid(row=6, column=0)
         self.input_end_time = Text(master, width=30, height=2)
         self.input_end_time.grid(row=6, column=1)
 
         ttk.Button(master, text="ثبت", command=self.insert_data).grid(row=7, column=0, columnspan=2)
 
     def insert_data(self):
-        ids = getting_id_of_selected_item(self.selected_singer.get(),self.selected_hall.get(), self.ids)
+        ids = getting_id_of_selected_item(self.selected_singer.get(), self.selected_hall.get(), self.ids)
         data = (create_random_id(), self.input_price.get("1.0", "end-1c"), self.input_date.get("1.0", "end-1c"),
                 self.input_start_time.get("1.0", "end-1c"), self.input_end_time.get("1.0", "end-1c"),
                 ids[0], ids[1])
@@ -103,4 +103,3 @@ class CreateConcert:
         parent_name = self.master.winfo_parent()
         parent = self.master._nametowidget(parent_name)
         parent.destroy()
-

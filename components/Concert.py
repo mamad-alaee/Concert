@@ -7,8 +7,8 @@ from db.Sqlite import read_concert
 
 class Concert:
     def __init__(self, master):
-        self.lable = ttk.Label(master, text="کنسرت ها")
-        self.lable.grid(row=0, column=0, columnspan=2)
+        lable = ttk.Label(master, text="کنسرت ها")
+        lable.grid(row=0, column=0, columnspan=2)
 
         concerts = read_concert("")
         print(concerts)

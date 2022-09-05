@@ -12,28 +12,19 @@ from db.Sqlite import create_tables
 class Main:
     main_component = None
 
-    def handle_focus(self):
-        print("reload")
-        if isinstance(self.main_component, Hall):
-            self.set_frame_to_hall()
-        elif isinstance(self.main_component, Concert):
-            self.set_frame_to_concert()
-        elif isinstance(self.main_component, Singer):
-            self.set_frame_to_singer()
-
     def __int__(self):
         create_tables()
         self.root = Tk()
         self.root.configure(width=1000, height=600)
         self.root.configure(bg="lightblue")
         # self.root.bind("<FocusIn>", self.handle_focus)
-        self.menu_frame = ttk.Labelframe(self.root, text="menu")
-        self.menu_frame.grid(row=0, column=0)
+        menu_frame = ttk.Labelframe(self.root, text="menu")
+        menu_frame.grid(row=0, column=0)
 
-        ttk.Button(self.menu_frame, text="سالن", command=self.set_frame_to_hall).grid(row=0, column=0, columnspan=2)
-        ttk.Button(self.menu_frame, text="کنسرت", command=self.set_frame_to_concert).grid(row=0, column=2, columnspan=2)
-        ttk.Button(self.menu_frame, text="آرتیست", command=self.set_frame_to_singer).grid(row=0, column=4,
-                                                                                          columnspan=2)
+        ttk.Button(menu_frame, text="سالن", command=self.set_frame_to_hall).grid(row=0, column=0, columnspan=2)
+        ttk.Button(menu_frame, text="کنسرت", command=self.set_frame_to_concert).grid(row=0, column=2, columnspan=2)
+        ttk.Button(menu_frame, text="آرتیست", command=self.set_frame_to_singer).grid(row=0, column=4,
+                                                                                     columnspan=2)
 
         self.main_frame = ttk.Labelframe(self.root, text="main_component")
         self.main_frame.grid(row=2, column=0)
@@ -68,7 +59,7 @@ class Main:
     def create_new_windows(self):
         create_windows = Toplevel(self.root)
         create_windows.geometry("350x250")
-        create_windows.title("New Window")
+        create_windows.title("create Window")
         main_create_frame = ttk.Labelframe(create_windows, text="menu")
         main_create_frame.grid(row=0, column=0)
         print(self.main_component.__class__)
@@ -79,6 +70,15 @@ class Main:
             main_create_frame = CreateConcert(main_create_frame)
         elif isinstance(self.main_component, Singer):
             main_create_frame = CreateSinger(main_create_frame)
+
+    def handle_focus(self):
+        print("reload")
+        if isinstance(self.main_component, Hall):
+            self.set_frame_to_hall()
+        elif isinstance(self.main_component, Concert):
+            self.set_frame_to_concert()
+        elif isinstance(self.main_component, Singer):
+            self.set_frame_to_singer()
 
 
 if __name__ == '__main__':

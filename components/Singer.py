@@ -6,8 +6,8 @@ from db.Sqlite import read_singer
 
 class Singer:
     def __init__(self, master):
-        self.lable = ttk.Label(master, text="آرتیست ها")
-        self.lable.grid(row=0, column=0, columnspan=2)
+        lable = ttk.Label(master, text="آرتیست ها")
+        lable.grid(row=0, column=0, columnspan=2)
 
         singers = read_singer("")
 
