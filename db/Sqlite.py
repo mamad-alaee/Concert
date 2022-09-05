@@ -42,7 +42,7 @@ def insert_hall(data):
     try:
         conn = sqlite3.connect(dbname)
         cobj = conn.cursor()
-        cobj.execute("INSERT INTO Singer VALUES(?,?,?,?)", data)
+        cobj.execute("INSERT INTO Hall VALUES(?,?,?,?)", data)
         conn.commit()
     except Error as e:
         print(e)
@@ -56,7 +56,7 @@ def insert_concert(data):
     try:
         conn = sqlite3.connect(dbname)
         cobj = conn.cursor()
-        cobj.execute("INSERT INTO Singer VALUES(?,?,?,?,?,?,?)", data)
+        cobj.execute("INSERT INTO Concert VALUES(?,?,?,?,?,?,?)", data)
         conn.commit()
     except Error as e:
         print(e)
@@ -85,7 +85,13 @@ def read_concert(where_filter):
     try:
         conn = sqlite3.connect(dbname)
         cobj = conn.cursor()
-        cobj.execute("SELECT * FROM Concert" + where_filter)
+        # cobj.execute("SELECT price,date,start_time,end_time "
+        #              "FROM Concert "
+        #              "INNER JOIN Singer ON Concert.singer_id = Singer.id "
+        #              "INNER JOIN Hall ON Concert.hall_id = Hall.id" + where_filter)
+        cobj.execute("""SELECT * FROM Concert INNER JOIN Singer ON Concert.singer_id = 
+        Singer.id INNER JOIN Hall ON Concert.hall_id = Hall.id""")
+
         result = cobj.fetchall()
         return result
     except Error as e:
@@ -148,6 +154,25 @@ def delete_singer(where_filter):
         cobj.execute("DELETE FROM Singer" + where_filter)
         result = cobj.fetchall()
         return result
+    except Error as e:
+        print(e)
+    finally:
+        if conn:
+            conn.close()
+
+
+def get_ids_for_combobox():
+    conn = None
+    try:
+        conn = sqlite3.connect(dbname)
+        cobj = conn.cursor()
+        cobj.execute("SELECT name,id FROM Singer")
+        result_singer = cobj.fetchall()
+        cobj.execute("SELECT name,id FROM Hall")
+        result_hall = cobj.fetchall()
+        # print("this is what we got", result_hall)
+        # print("this is what we got", result_singer)
+        return result_hall ,result_singer
     except Error as e:
         print(e)
     finally:

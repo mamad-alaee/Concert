@@ -1,7 +1,10 @@
 from tkinter import *
 from tkinter import ttk
+import uuid
+from db.Sqlite import insert_hall
+from db.create_random_id import create_random_id
 
-from components.ListItem import ListItem
+
 
 
 class CreateHall:
@@ -24,5 +27,9 @@ class CreateHall:
         self.input_address = Text(master, width=30, height=2)
         self.input_address.grid(row=3, column=1)
 
-        ttk.Button(master, text="ثبت").grid(row=5, column=0, columnspan=2)
+        ttk.Button(master, text="ثبت", command=self.insert_data).grid(row=5, column=0, columnspan=2)
 
+    def insert_data(self):
+        data = (create_random_id(), self.input_name.get("1.0", "end-1c"), self.input_amount.get("1.0", "end-1c"), self.input_address.get("1.0", "end-1c"))
+        print(data)
+        insert_hall(data)

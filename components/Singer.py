@@ -2,20 +2,16 @@ from tkinter import *
 from tkinter import ttk
 
 from components.ListItem import ListItem
-
+from db.Sqlite import read_singer
 
 class Singer:
     def __init__(self, master):
         self.lable = ttk.Label(master, text="آرتیست ها")
         self.lable.grid(row=0, column=0, columnspan=2)
-        # ttk.Button(master, text="ایجاد").grid(row=0, column=4, columnspan=2)
 
-        fake_data = [{"style": "پاپ", "name": "علیرضا آذر"}, {"style": "R&B",
-                                                              "name": "تتلو"},
-                     {"style": "رپ", "name": "مهراد هیدن"},
-                     {"style": "رپ", "name": "یاس"}]
+        singers = read_singer("")
 
         index = 1
-        for data in fake_data:
-            ListItem(master, data["name"], data["style"], index, "singer")
+        for data in singers:
+            ListItem(master, data[1], data[2], index, "singer")
             index += 1

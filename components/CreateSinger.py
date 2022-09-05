@@ -3,7 +3,8 @@ from tkinter import ttk
 from tkinter import IntVar
 
 from components.ListItem import ListItem
-
+from db.create_random_id import create_random_id
+from db.Sqlite import insert_singer
 
 class CreateSinger:
     def __init__(self, master):
@@ -33,6 +34,12 @@ class CreateSinger:
         self.checkbox_gender_men.grid(row=4, column=1)
         self.checkbox_gender_women.grid(row=4, column=2)
 
-        ttk.Button(master, text="ثبت").grid(row=5, column=0, columnspan=2)
+        ttk.Button(master, text="ثبت", command=self.insert_data).grid(row=5, column=0, columnspan=2)
+
+    def insert_data(self):
+        data = (create_random_id(), self.input_name.get("1.0", "end-1c"), self.input_style.get("1.0",
+                "end-1c"), self.input_age.get("1.0", "end-1c"), self.gender.get())
+        print(data)
+        insert_singer(data)
 
 
