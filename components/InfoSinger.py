@@ -1,5 +1,5 @@
 from tkinter import *
-from tkinter import ttk
+from tkinter import ttk, messagebox
 from tkinter import IntVar
 
 from db.Sqlite import delete_singer
@@ -7,6 +7,7 @@ from db.Sqlite import delete_singer
 class InfoSinger:
     def __init__(self, master, data):
         self.id = data[0]
+        self.master = master
 
         lable = ttk.Label(master, text="ایجاد خواننده")
         lable.grid(row=0, column=1)
@@ -49,4 +50,9 @@ class InfoSinger:
     def removing_item(self):
         where_filter = f"WHERE id={self.id}"
         result = delete_singer(where_filter)
-        print(result)
+
+        messagebox.showinfo("وضعیت", result)
+        parent_name = self.master.winfo_parent()
+        parent = self.master._nametowidget(parent_name)
+        parent.destroy()
+

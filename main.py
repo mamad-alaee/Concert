@@ -12,12 +12,21 @@ from db.Sqlite import create_tables
 class Main:
     main_component = None
 
+    def handle_focus(self):
+        print("reload")
+        if isinstance(self.main_component, Hall):
+            self.set_frame_to_hall()
+        elif isinstance(self.main_component, Concert):
+            self.set_frame_to_concert()
+        elif isinstance(self.main_component, Singer):
+            self.set_frame_to_singer()
+
     def __int__(self):
         create_tables()
         self.root = Tk()
         self.root.configure(width=1000, height=600)
         self.root.configure(bg="lightblue")
-
+        # self.root.bind("<FocusIn>", self.handle_focus)
         self.menu_frame = ttk.Labelframe(self.root, text="menu")
         self.menu_frame.grid(row=0, column=0)
 
@@ -31,6 +40,7 @@ class Main:
 
         self.main_component = Hall(self.main_frame)
         ttk.Button(self.main_frame, text="ایجاد", command=self.create_new_windows).grid(row=0, column=4, columnspan=2)
+        ttk.Button(self.main_frame, text="تازه سازی", command=self.handle_focus).grid(row=0, column=6, columnspan=2)
 
         self.root.mainloop()
 
@@ -39,18 +49,21 @@ class Main:
             widgets.destroy()
         self.main_component = Concert(self.main_frame)
         ttk.Button(self.main_frame, text="ایجاد", command=self.create_new_windows).grid(row=0, column=4, columnspan=2)
+        ttk.Button(self.main_frame, text="تازه سازی", command=self.handle_focus).grid(row=0, column=6, columnspan=2)
 
     def set_frame_to_hall(self):
         for widgets in self.main_frame.winfo_children():
             widgets.destroy()
         self.main_component = Hall(self.main_frame)
         ttk.Button(self.main_frame, text="ایجاد", command=self.create_new_windows).grid(row=0, column=4, columnspan=2)
+        ttk.Button(self.main_frame, text="تازه سازی", command=self.handle_focus).grid(row=0, column=6, columnspan=2)
 
     def set_frame_to_singer(self):
         for widgets in self.main_frame.winfo_children():
             widgets.destroy()
         self.main_component = Singer(self.main_frame)
         ttk.Button(self.main_frame, text="ایجاد", command=self.create_new_windows).grid(row=0, column=4, columnspan=2)
+        ttk.Button(self.main_frame, text="تازه سازی", command=self.handle_focus).grid(row=0, column=6, columnspan=2)
 
     def create_new_windows(self):
         create_windows = Toplevel(self.root)

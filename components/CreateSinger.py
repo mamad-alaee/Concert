@@ -1,5 +1,5 @@
 from tkinter import *
-from tkinter import ttk
+from tkinter import ttk, messagebox
 from tkinter import IntVar
 
 from components.ListItem import ListItem
@@ -8,6 +8,7 @@ from db.Sqlite import insert_singer
 
 class CreateSinger:
     def __init__(self, master):
+        self.master = master
         self.lable = ttk.Label(master, text="ایجاد خواننده")
         self.lable.grid(row=0, column=1)
 
@@ -40,6 +41,10 @@ class CreateSinger:
         data = (create_random_id(), self.input_name.get("1.0", "end-1c"), self.input_style.get("1.0",
                 "end-1c"), self.input_age.get("1.0", "end-1c"), self.gender.get())
         print(data)
-        insert_singer(data)
+        result = insert_singer(data)
+        messagebox.showinfo("وضعیت", result)
+        parent_name = self.master.winfo_parent()
+        parent = self.master._nametowidget(parent_name)
+        parent.destroy()
 
 

@@ -1,5 +1,5 @@
 from tkinter import *
-from tkinter import ttk
+from tkinter import ttk, messagebox
 import uuid
 from db.Sqlite import insert_hall
 from db.create_random_id import create_random_id
@@ -9,6 +9,7 @@ from db.create_random_id import create_random_id
 
 class CreateHall:
     def __init__(self, master):
+        self.master = master
         self.lable = ttk.Label(master, text="ایجاد سالن")
         self.lable.grid(row=0, column=1)
 
@@ -32,4 +33,8 @@ class CreateHall:
     def insert_data(self):
         data = (create_random_id(), self.input_name.get("1.0", "end-1c"), self.input_amount.get("1.0", "end-1c"), self.input_address.get("1.0", "end-1c"))
         print(data)
-        insert_hall(data)
+        result = insert_hall(data)
+        messagebox.showinfo("وضعیت", result)
+        parent_name = self.master.winfo_parent()
+        parent = self.master._nametowidget(parent_name)
+        parent.destroy()

@@ -30,6 +30,7 @@ def insert_singer(data):
         cobj = conn.cursor()
         cobj.execute("INSERT INTO Singer VALUES(?,?,?,?,?)", data)
         conn.commit()
+        return "done"
     except Error as e:
         print(e)
     finally:
@@ -44,6 +45,7 @@ def insert_hall(data):
         cobj = conn.cursor()
         cobj.execute("INSERT INTO Hall VALUES(?,?,?,?)", data)
         conn.commit()
+        return "done"
     except Error as e:
         print(e)
     finally:
@@ -58,6 +60,7 @@ def insert_concert(data):
         cobj = conn.cursor()
         cobj.execute("INSERT INTO Concert VALUES(?,?,?,?,?,?,?)", data)
         conn.commit()
+        return "done"
     except Error as e:
         print(e)
     finally:

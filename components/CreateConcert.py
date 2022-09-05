@@ -1,5 +1,5 @@
 from tkinter import *
-from tkinter import ttk
+from tkinter import ttk, messagebox
 from tkinter import StringVar
 
 from components.ListItem import ListItem
@@ -46,6 +46,7 @@ def getting_id_of_selected_item(singer_name, hall_name, ids):
 
 class CreateConcert:
     def __init__(self, master):
+        self.master = master
         self.lable = ttk.Label(master, text="ایجاد کنسرت")
         self.lable.grid(row=0, column=1)
         self.ids = get_ids_for_combobox()
@@ -96,5 +97,10 @@ class CreateConcert:
         data = (create_random_id(), self.input_price.get("1.0", "end-1c"), self.input_date.get("1.0", "end-1c"),
                 self.input_start_time.get("1.0", "end-1c"), self.input_end_time.get("1.0", "end-1c"),
                 ids[0], ids[1])
-        print(data)
-        insert_concert(data)
+        # print(data)
+        result = insert_concert(data)
+        messagebox.showinfo("وضعیت", result)
+        parent_name = self.master.winfo_parent()
+        parent = self.master._nametowidget(parent_name)
+        parent.destroy()
+
