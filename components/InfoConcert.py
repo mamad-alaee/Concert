@@ -53,7 +53,7 @@ class InfoConcert:
         input_end_time.insert(INSERT, data[4])
         input_end_time['state'] = 'disabled'
 
-        ttk.Button(master, text="خرید بلیط").grid(row=8, column=0, columnspan=2)
+        # ttk.Button(master, text="خرید بلیط").grid(row=8, column=0, columnspan=2)
         ttk.Button(master, text="حذف", command=self.removing_item).grid(row=7, column=0, columnspan=2)
 
     def removing_item(self):

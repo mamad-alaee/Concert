@@ -5,12 +5,11 @@ from components.ListItem import ListItem
 from db.Sqlite import read_hall
 
 
-class Hall:
-    def __init__(self, master):
+class SearchResultHall:
+    def __init__(self, master, halls):
         lable = ttk.Label(master, text="سالن های نمایش")
         lable.grid(row=0, column=0, columnspan=1)
 
-        halls = read_hall("")
 
         index = 2
         for data in halls:
